@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JUNAIDMALIK.COM - Inpage to Unicode Converter</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+<style>
+  /* General Reset */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Nastaliq Urdu', serif;
+    background: #f4f6f8;
+    direction: rtl;
+  }
+
+  header {
+    background: #0b3d91;
+    color: white;
+    text-align: center;
+    padding: 25px 10px;
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+
+  label {
+    font-size: 18px;
+    margin-bottom: 8px;
+    display: block;
+    color: #333;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    margin-bottom: 20px;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  button {
+    background: #0b3d91;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    background: #092f6b;
+    transform: translateY(-2px);
+  }
+
+  #outputText {
+    background: #f0f0f0;
+  }
+
+  @media (max-width: 600px) {
+    header { font-size: 26px; padding: 20px 10px; }
+    button { width: 100%; }
+  }
+
+</style>
+</head>
+<body>
+
+<header>JUNAIDMALIK.COM - Inpage to Unicode Converter</header>
+
+<div class="container">
+  <label for="inputText">اردو Inpage Text لکھیں:</label>
+  <textarea id="inputText" rows="6" placeholder="یہاں Inpage text لکھیں"></textarea>
+
+  <div class="buttons">
+    <button onclick="convertToUnicode()">Convert to Unicode</button>
+    <button onclick="copyOutput()">Copy to Clipboard</button>
+  </div>
+
+  <label for="outputText">Unicode Output:</label>
+  <textarea id="outputText" rows="6" readonly></textarea>
+</div>
+
+<script>
+function convertToUnicode() {
+  let input = document.getElementById("inputText").value;
+  let output = "";
+  for (let i = 0; i < input.length; i++) {
+    output += "&#" + input.charCodeAt(i) + ";";
+  }
+  document.getElementById("outputText").value = output;
+}
+
+function copyOutput() {
+  let output = document.getElementById("outputText");
+  output.select();
+  output.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(output.value).then(() => {
+    alert("Unicode text copied!");
+  });
+}
+</script>
+
+</body>
+</html>
